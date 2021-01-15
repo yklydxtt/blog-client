@@ -1,0 +1,7 @@
+/* @global-import style from 'antd/dist/antd.css';
+:global (style){
+    @import  from 'antd/dist/antd.css';
+}
+:global(.title){
+    color: #ff0;
+} */

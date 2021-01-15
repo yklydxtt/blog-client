@@ -34,7 +34,15 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: [
+        // exclude:[/node_modules/],
+        oneOf:[{
+          resourceQuery: /^\?raw$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            require.resolve('css-loader')
+        ]
+        },{
+          use: [
           MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
@@ -45,8 +53,17 @@ module.exports = {
               },
             },
           },
-        ],
+        ]}]
       },
+      // {
+      //   test: /\.css$/,
+      //   include: [/[\\/]node_modules[\\/].*antd/],
+      //   use: [
+      //     // MiniCssExtractPlugin.loader,
+      //     {loader: 'style-loader'},
+      //     {loader: 'css-loader'}
+      //   ]
+      // },
       {
         test: /\.(jsx?|tsx?)$/,
         exclude: /node_modules/,
@@ -61,7 +78,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "..", "src/index.html"),
+      template: path.resolve(__dirname, "..", "src/index.html.ejs"),
       minify: {
         collapseWhitespace: true,
       },
@@ -87,4 +104,8 @@ module.exports = {
     path: path.resolve(__dirname, "../dist"),
     publicPath: "http://localhost:3000",
   },
+  // externals: {
+  //   'react': 'React',
+  //   'react-dom': 'ReactDOM',
+  // },
 };
