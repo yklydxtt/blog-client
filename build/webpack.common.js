@@ -102,7 +102,7 @@ module.exports = {
   output: {
     filename: "[name].bundle.[hash:8].js",
     path: path.resolve(__dirname, "../dist"),
-    publicPath: "http://localhost:3000",
+    publicPath: "http://140.143.6.190:3000",
   },
   // externals: {
   //   'react': 'React',
